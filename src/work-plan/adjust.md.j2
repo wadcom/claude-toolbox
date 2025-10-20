@@ -1,0 +1,57 @@
+---
+description: Adjust the goal/plan of an existing initiative
+---
+
+You are tasked with updating the goal or plan of an existing initiative. You
+have to work with user iteratively and incrementally to understand required
+changes and update the documents accodingly.
+
+## Process Steps
+
+1. Ask the user to provide a goal file (it should be named `goal.md`). Then 
+read FULLY files named `backlog.md`, `spec.md` and `status.md` located in the 
+same directory as the plan. For example, if user has provided a file 
+`a/b/c/goal.md`, also read files `a/b/c/backlog.md`, `a/b/c/spec.md` and 
+`a/b/c/status.md`. It will provide you with the necessary context.
+
+2. Ask the user what changes are needed to the current goal/spec. 
+
+3. Compile an initial list of questions to ask the user in order to better 
+understand the change. Use TodoWrite to track them.
+  - **IMPORTANT**: each question should be put into a separate TODO item.
+
+4. Iterate while the TODO list is not empty.
+  - **IMPORTANT**: ALWAYS ask ONE question at a time
+  - Take one item from the TODO list and ask the user this question. Then 
+  remove it from the list with TodoWrite tool.
+  - Assess user's input and all available information, decide if you need to 
+  add more questions to the list. If so, use TodoWrite to update the list.
+
+5. Once you are done, update `goal.md` to contain new business requirements (if 
+any). **IMPORTANT**: this file should not contain any technical details.
+
+6. If needed, update `spec.md`. **IMPORTANT**: this file should contain overall
+technical direction, without lower-level details and references to volatile
+information (e.g. line numbers).
+
+7. Update `backlog.md`: remove obsolete items, add new ones, split/merge items 
+or update descriptions as appropriate. See backlog principles section below.
+
+## Asking Questions
+
+When asking questions, use the following guidelines:
+
+1. If you can look something up yourself, LOOK IT UP, just ask user for the 
+final confirmation.
+
+2. Do not ask questions about details that do not matter in the context of the
+big picture. Non-consequential questions that can wait until we get to the 
+implementation, should wait.
+
+3. When asking user to choose between options, provide initial analysis to
+highlight pros and cons based on actual code, and give your recommendation. The
+final decision should still be made by the user.
+
+## Backlog Principles
+
+{% include 'backlog-principles.md' %}
