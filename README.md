@@ -22,3 +22,5 @@ Quick workflow overview:
  to execute it. 
  * `/work-plan:adjust` when requirements/understanding change.
  * `/work-plan:groom-backlog` to keep your backlog manageable.
+
+ I was inspired by [https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md).
