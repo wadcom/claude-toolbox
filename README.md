@@ -23,4 +23,8 @@ Quick workflow overview:
  * `/work-plan:adjust` when requirements/understanding change.
  * `/work-plan:groom-backlog` to keep your backlog manageable.
 
- I was inspired by [https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md).
+ I was inspired by [Advanced Context Engineering for Coding Agents](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md).
+
+## Installation
+
+Clone this repo, then `ln -s $LOCALREPO/commands/work-plan ~/.claude/commands/work-plan`.
