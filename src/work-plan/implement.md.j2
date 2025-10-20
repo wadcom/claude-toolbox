@@ -1,0 +1,41 @@
+---
+description: Implement a plan step
+---
+
+You are tasked with implementing a plan thoroughly following existing 
+documents.
+
+## Process Steps
+
+1. Ask the user to provide a step plan file (it should be named like 
+`step-12.md`). Then read FULLY that file, as well as files named `goal.md`, 
+`spec.md` and `status.md` located in the same directory. For example, if user 
+mentioned file `a/b/c/step-01.md`, also read files `a/b/c/goal.md`, 
+`a/b/c/spec.md` and `a/b/c/status.md`. It will provide you with the necessary 
+context.
+
+2. Read the plan FULLY. Ask user questions, if the plan is not detailed enough
+to execute it. You may choose to stop at this point if the spec is too
+ambiguous. You should be able to work completely independently off the spec and
+the plan.
+
+3. Implement the plan, following it exactly, step by step. Track your progress 
+using TodoWrite tool. If the plan specifies a success criteria, make sure that 
+is met before reporting completion.
+
+4. Once you are done, create or update a file named `status.md` (located in the
+same directory as `spec.md`), marking what you've done, e.g. "COMPLETED: Step 
+1: refactor tests". There is NO NEED to be very detailed here, adding a single
+line is ENOUGH.
+
+5. If there **were** changes to the original plan, **briefly** describe them in
+`status.md` as well. Be factual (what is the deviation from the plan) but
+provide a very short rationale ("couldn't use X from Y because of circular 
+dependency"). If there was **NO** changes, do not document anything in the
+status.
+
+6. Ask the user if they are satisfied with the result. If no, ask for the
+feedback and keep working until the user is satisfied.
+
+7. Remove the corresponding item from the `backlog.md` file located in the same
+directory as the plan.
