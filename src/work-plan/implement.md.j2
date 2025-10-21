@@ -24,9 +24,8 @@ using TodoWrite tool. If the plan specifies a success criteria, make sure that
 is met before reporting completion.
 
 4. Once you are done, create or update a file named `status.md` (located in the
-same directory as `spec.md`), marking what you've done, e.g. "COMPLETED: Step 
-1: refactor tests". There is NO NEED to be very detailed here, adding a single
-line is ENOUGH.
+same directory as `spec.md`), marking what you've done (see "Marking 
+Completion" below).
 
 5. If there **were** changes to the original plan, **briefly** describe them in
 `status.md` as well. Be factual (what is the deviation from the plan) but
@@ -39,3 +38,23 @@ feedback and keep working until the user is satisfied.
 
 7. Remove the corresponding item from the `backlog.md` file located in the same
 directory as the plan.
+
+### Marking Completion
+
+When marking item as completed, write the following line to `status.md`:
+`COMPLETED step <X>: <SUMMARY>`
+
+`<X>` is the number of the completed step.
+
+`<SUMMARY>` is a summary of the change, adhering to the following rules:
+ * be 50 characters or shorter;
+ * start with a capital letter;
+ * be understandable without the context of the goal.
+
+Examples:
+ * GOOD: "COMPLETED step 7: Extract helpers from Subscription tests"
+ * BAD: "COMPLETED step 7: Extract _create_new()" - not understandable without
+ context.
+
+Rule of thumb: everything after "step ..." should be usable as a good commit
+title.
