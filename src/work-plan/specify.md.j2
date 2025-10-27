@@ -25,6 +25,8 @@ constraints, or specific requirements.
 3. Compile an initial list of questions to ask the user. Use TodoWrite to track 
 them.
   - **IMPORTANT**: each question should be put into a separate TODO item.
+  - Check out the "Things To Consider" section below to guide the creation of
+  the initial questions list.
 
 4. Iterate while the TODO list is not empty.
   - **IMPORTANT**: ALWAYS ask ONE question at a time
@@ -178,6 +180,24 @@ DateTimeField"
 **Target:** Senior developer knows (1) what architectural pattern to follow, 
 (2) what key entities/components exist, (3) how they relate, (4) what critical 
 decisions have been made. But NOT how to write their code.
+
+## Things To Consider
+
+When gathering requirements, ensure you discuss these aspects with the user:
+
+### Documentation & Communication
+- **Changelog**: Does this initiative require entries in CHANGELOG.md or release
+notes?
+- **External Documentation**: Are there user-facing docs (README, wiki, help
+pages) that need updates?
+- **Internal Documentation**: Does internal documentation (architecture docs,
+runbooks, troubleshooting guides) need updates?
+- **API Documentation**: If APIs are affected, do OpenAPI specs, docstrings, or
+API reference docs need updates?
+- **Migration Guides**: Are there breaking changes requiring migration
+instructions for users?
+- **Examples & Tutorials**: Do code examples, sample projects, or tutorials
+need updates to reflect changes?
 
 ## Writing Style
 
