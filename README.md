@@ -38,11 +38,12 @@ big-upfront-design approaches to iterative methods—planning incrementally base
 on learning works better than pretending to know everything from day one. That 
 principle applies equally well to AI-assisted development.
 
-## Quick workflow overview 
+## Quick workflow overview
  * `/work-plan:specify` to start a new initiative → `/work-plan:create-backlog`
  to prioritize work.
  * Repeat `/work-plan:prep-next` to plan the next step → `/work-plan:implement`
- to execute it. 
+ to execute it.
+ * `/work-plan:one-off` for small changes that don't need formal backlog planning.
  * `/work-plan:adjust` when requirements/understanding change.
  * `/work-plan:groom-backlog` to keep your backlog manageable.
 
