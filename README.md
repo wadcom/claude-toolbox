@@ -46,6 +46,7 @@ principle applies equally well to AI-assisted development.
  * `/work-plan:one-off` for small changes that don't need formal backlog planning.
  * `/work-plan:adjust` when requirements/understanding change.
  * `/work-plan:groom-backlog` to keep your backlog manageable.
+ * `/work-plan:load` to load initiative context for free-form discussion.
 
  I was inspired by [Advanced Context Engineering for Coding Agents](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md).
 
