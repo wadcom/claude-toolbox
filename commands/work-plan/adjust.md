@@ -64,6 +64,14 @@ Backlog items are like rocks. When you break a rock, you get several rocks. So
 are backlog items: they can be split into smaller items or grouped back into
 larger ones.
 
+Each backlog item should be a **vertical slice**: it delivers a small piece of
+end-to-end functionality that can be checked or tested manually once
+implemented. Prefer slicing that produces something observable (a new UI
+element, an API response, a CLI output) over slicing by technical layer (e.g.
+"add database schema", then "add service layer", then "add UI"). When vertical
+slicing is not practical (e.g. pure infrastructure or foundational plumbing),
+note explicitly why, and define what "done" looks like for that item.
+
 Each backlog item can have a SHORT description (no more than 3 sentences).
 
 The highest priority items (the ones we will work on next), should be the
