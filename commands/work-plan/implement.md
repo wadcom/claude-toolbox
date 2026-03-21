@@ -2,42 +2,60 @@
 description: Implement a plan step
 ---
 
-You are tasked with implementing a plan thoroughly following existing 
-documents.
+You are tasked with implementing the next backlog item for an initiative. This
+includes evaluating readiness, planning, and implementing — all in one flow.
 
 ## Process Steps
 
-1. Ask the user to provide a step plan file (it should be named like 
-`step-12.md`). Then read FULLY that file, as well as files named `goal.md`, 
-`spec.md` and `status.md` located in the same directory. For example, if user 
-mentioned file `a/b/c/step-01.md`, also read files `a/b/c/goal.md`, 
-`a/b/c/spec.md` and `a/b/c/status.md`. It will provide you with the necessary 
-context.
+### Phase 1: Load Context
 
-2. Read the plan FULLY. Ask user questions, if the plan is not detailed enough
-to execute it. You may choose to stop at this point if the spec is too
-ambiguous. You should be able to work completely independently off the spec and
-the plan.
+1. Ask the user to provide the work-plan directory. Then read FULLY the files
+`goal.md`, `spec.md`, `status.md` and `backlog.md` from that directory. This
+will provide you with the necessary context.
 
-3. Implement the plan, following it exactly, step by step. Track your progress 
-using TodoWrite tool. If the plan specifies a success criteria, make sure that 
-is met before reporting completion.
+2. Identify the top item in the backlog. This is what you will work on.
 
-4. Once you are done, create or update a file named `status.md` (located in the
-same directory as `spec.md`), marking what you've done (see "Marking 
-Completion" below).
+### Phase 2: Evaluate Readiness
 
-5. If there **were** changes to the original plan, **briefly** describe them in
-`status.md` as well. Be factual (what is the deviation from the plan) but
-provide a very short rationale ("couldn't use X from Y because of circular 
-dependency"). If there was **NO** changes, do not document anything in the
-status.
+3. Evaluate whether the top item has enough details to be worked on immediately.
+It is expected that the item doesn't spell out every single detail — only reject
+it if ambiguity is so significant that it can't be resolved with a few simple
+questions. If the item needs refinement, explain which aspects are unclear and
+STOP HERE.
 
-6. Ask the user if they are satisfied with the result. If no, ask for the
-feedback and keep working until the user is satisfied.
+4. Evaluate effort. If the item would take a senior engineer more than 30
+minutes of focused work, recommend splitting it and STOP HERE.
 
-7. Remove the corresponding item from the `backlog.md` file located in the same
-directory as the plan.
+5. If there are details that need clarification, work with the user iteratively
+to get the required clarity. Ask ONE question at a time.
+
+### Phase 3: Plan
+
+6. Enter Plan mode. Create an implementation plan for the item using the context
+from goal, spec, and status. The plan should contain important high-level
+details without being overly specific. A senior developer should be able to
+review the overall design and key decisions without being bogged down by
+minutia.
+
+7. Once the user approves the plan, exit Plan mode.
+
+### Phase 4: Implement
+
+8. Implement the plan. Track your progress using the task tools. If the plan
+specifies success criteria, make sure they are met before reporting completion.
+
+9. Once done, update `status.md` in the work-plan directory, marking what you've
+done (see "Marking Completion" below).
+
+10. If there **were** deviations from the plan, **briefly** describe them in
+`status.md`. Be factual (what is the deviation) and provide a very short
+rationale ("couldn't use X from Y because of circular dependency"). If there
+were **no** deviations, do not add anything beyond the completion marker.
+
+11. Ask the user if they are satisfied with the result. If not, ask for feedback
+and keep working until the user is satisfied.
+
+12. Remove the completed item from `backlog.md`.
 
 ### Marking Completion
 
