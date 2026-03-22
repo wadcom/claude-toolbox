@@ -41,8 +41,7 @@ principle applies equally well to AI-assisted development.
 ## Quick workflow overview
  * `/work-plan:specify` to start a new initiative → `/work-plan:create-backlog`
  to prioritize work.
- * Repeat `/work-plan:prep-next` to plan the next step → `/work-plan:implement`
- to execute it.
+ * `/work-plan:implement-next` to implement the next backlog item.
  * `/work-plan:one-off` for small changes that don't need formal backlog planning.
  * `/work-plan:adjust` when requirements/understanding change.
  * `/work-plan:groom-backlog` to keep your backlog manageable.

@@ -38,7 +38,7 @@ need them to build understanding incrementally.
 - This command is for open-ended discussion, not for executing a specific
   workflow
 - If the user wants to implement, groom, or adjust the plan, suggest the
-  appropriate command (`/work-plan:implement`, `/work-plan:groom-backlog`,
+  appropriate command (`/work-plan:implement-next`, `/work-plan:groom-backlog`,
   `/work-plan:adjust`, etc.)
 - Feel free to read `step-*.md` files or `backlog.md` during the discussion if
   they become relevant

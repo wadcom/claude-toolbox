@@ -34,7 +34,7 @@ Slash commands are installed by symlinking command directories to `~/.claude/com
 ln -s $PWD/commands/work-plan ~/.claude/commands/work-plan
 ```
 
-This makes commands like `/work-plan:specify`, `/work-plan:implement`, etc. available in Claude Code.
+This makes commands like `/work-plan:specify`, `/work-plan:implement-next`, etc. available in Claude Code.
 
 ## Directory Structure
 

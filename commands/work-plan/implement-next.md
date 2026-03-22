@@ -1,5 +1,5 @@
 ---
-description: Implement a plan step
+description: Implement the next backlog item
 ---
 
 You are tasked with implementing the next backlog item for an initiative. This
@@ -45,7 +45,15 @@ minutia.
 specifies success criteria, make sure they are met before reporting completion.
 
 9. Present a summary of what was done to the user.
-{% include 'linear-walkthrough.md' %}
+Use the **linear walkthrough** approach: present information as a guided
+narrative where each piece builds naturally on what came before. The reader
+should never encounter an unexplained concept — every idea is introduced before
+it is referenced. Structure the material so it reads top-to-bottom without
+requiring the reader to jump ahead or back.
+
+This contrasts with a "reference" style that groups by category (e.g. all types,
+then all functions). Instead, introduce concepts in the order a newcomer would
+need them to build understanding incrementally.
 
 10. Once done, update `status.md` in the work-plan directory, marking what you've
 done (see "Marking Completion" below).
@@ -62,4 +70,20 @@ and keep working until the user is satisfied.
 
 ### Marking Completion
 
-{% include 'marking-completion.md' %}
+When marking item as completed, write the following line to `status.md`:
+`COMPLETED step <X>: <SUMMARY>`
+
+`<X>` is the number of the completed step.
+
+`<SUMMARY>` is a summary of the change, adhering to the following rules:
+ * be 50 characters or shorter;
+ * start with a capital letter;
+ * be understandable without the context of the goal.
+
+Examples:
+ * GOOD: "COMPLETED step 7: Extract helpers from Subscription tests"
+ * BAD: "COMPLETED step 7: Extract _create_new()" - not understandable without
+ context.
+
+Rule of thumb: everything after "step ..." should be usable as a good commit
+title.
