@@ -49,17 +49,28 @@ adjusted and iterate on the plan.
 using TodoWrite tool. If the plan specifies a success criteria, make sure that
 is met before reporting completion.
 
-8. Once you are done, create or update a file named `status.md` (located in the
+8. Present a summary of what was done to the user.
+Use the **linear walkthrough** approach: present information as a guided
+narrative where each piece builds naturally on what came before. The reader
+should never encounter an unexplained concept — every idea is introduced before
+it is referenced. Structure the material so it reads top-to-bottom without
+requiring the reader to jump ahead or back.
+
+This contrasts with a "reference" style that groups by category (e.g. all types,
+then all functions). Instead, introduce concepts in the order a newcomer would
+need them to build understanding incrementally.
+
+9. Once you are done, create or update a file named `status.md` (located in the
 same directory as `spec.md`), marking what you've done (see "Marking
 Completion" below).
 
-9. If there **were** changes to the original plan, **briefly** describe them in
+10. If there **were** changes to the original plan, **briefly** describe them in
 `status.md` as well. Be factual (what is the deviation from the plan) but
 provide a very short rationale ("couldn't use X from Y because of circular
 dependency"). If there was **NO** changes, do not document anything about
 deviations in the status.
 
-10. Ask the user if they are satisfied with the result. If no, ask for the
+11. Ask the user if they are satisfied with the result. If no, ask for the
 feedback and keep working until the user is satisfied.
 
 **IMPORTANT**: Do NOT update `backlog.md`. This is a one-off change that

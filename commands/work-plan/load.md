@@ -18,10 +18,18 @@ now, but note their existence. These contain detailed implementation plans for
 individual backlog items and can be consulted if more details are needed during
 the discussion.
 
-3. Provide a brief summary of the initiative context:
-   - The goal (1-2 sentences)
-   - Current status (what's done, what's in progress)
-   - Note if step plans are available for reference
+3. Provide a brief summary of the initiative context.
+Use the **linear walkthrough** approach: present information as a guided
+narrative where each piece builds naturally on what came before. The reader
+should never encounter an unexplained concept — every idea is introduced before
+it is referenced. Structure the material so it reads top-to-bottom without
+requiring the reader to jump ahead or back.
+
+This contrasts with a "reference" style that groups by category (e.g. all types,
+then all functions). Instead, introduce concepts in the order a newcomer would
+need them to build understanding incrementally.
+   Cover the goal, current status (what's done, what's in progress), and note if
+   step plans are available for reference.
 
 4. Ask the user what they'd like to discuss or explore regarding this initiative.
 

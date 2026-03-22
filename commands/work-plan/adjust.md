@@ -27,12 +27,23 @@ understand the change. Use TodoWrite to track them.
   - Assess user's input and all available information, decide if you need to 
   add more questions to the list. If so, use TodoWrite to update the list.
 
-5. Once you are done, update `goal.md` to contain new business requirements (if 
+5. Once you are done, update `goal.md` to contain new business requirements (if
 any). **IMPORTANT**: this file should not contain any technical details.
 
 6. If needed, update `spec.md`. **IMPORTANT**: this file should contain overall
 technical direction, without lower-level details and references to volatile
 information (e.g. line numbers).
+
+When rewriting `goal.md` or `spec.md`, maintain the linear walkthrough structure.
+Use the **linear walkthrough** approach: present information as a guided
+narrative where each piece builds naturally on what came before. The reader
+should never encounter an unexplained concept — every idea is introduced before
+it is referenced. Structure the material so it reads top-to-bottom without
+requiring the reader to jump ahead or back.
+
+This contrasts with a "reference" style that groups by category (e.g. all types,
+then all functions). Instead, introduce concepts in the order a newcomer would
+need them to build understanding incrementally.
 
 7. Update `backlog.md`: remove obsolete items, add new ones, split/merge items 
 or update descriptions as appropriate. See backlog principles section below.

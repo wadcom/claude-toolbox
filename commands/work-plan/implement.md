@@ -44,18 +44,29 @@ minutia.
 8. Implement the plan. Track your progress using the task tools. If the plan
 specifies success criteria, make sure they are met before reporting completion.
 
-9. Once done, update `status.md` in the work-plan directory, marking what you've
+9. Present a summary of what was done to the user.
+Use the **linear walkthrough** approach: present information as a guided
+narrative where each piece builds naturally on what came before. The reader
+should never encounter an unexplained concept — every idea is introduced before
+it is referenced. Structure the material so it reads top-to-bottom without
+requiring the reader to jump ahead or back.
+
+This contrasts with a "reference" style that groups by category (e.g. all types,
+then all functions). Instead, introduce concepts in the order a newcomer would
+need them to build understanding incrementally.
+
+10. Once done, update `status.md` in the work-plan directory, marking what you've
 done (see "Marking Completion" below).
 
-10. If there **were** deviations from the plan, **briefly** describe them in
+11. If there **were** deviations from the plan, **briefly** describe them in
 `status.md`. Be factual (what is the deviation) and provide a very short
 rationale ("couldn't use X from Y because of circular dependency"). If there
 were **no** deviations, do not add anything beyond the completion marker.
 
-11. Ask the user if they are satisfied with the result. If not, ask for feedback
+12. Ask the user if they are satisfied with the result. If not, ask for feedback
 and keep working until the user is satisfied.
 
-12. Remove the completed item from `backlog.md`.
+13. Remove the completed item from `backlog.md`.
 
 ### Marking Completion
 
