@@ -44,8 +44,11 @@ minutia.
 8. Implement the plan. Track your progress using the task tools. If the plan
 specifies success criteria, make sure they are met before reporting completion.
 
-9. Present a summary of what was done to the user.
+9. Write a walkthrough of the changes to `step-XY-walkthrough.md` in the
+work-plan directory, where XY is the step number from the backlog item (e.g.
+`step-03-walkthrough.md`).
 {% include 'linear-walkthrough.md' %}
+Present a brief summary to the user and point them to the walkthrough file.
 
 10. Once done, update `status.md` in the work-plan directory, marking what you've
 done (see "Marking Completion" below).
@@ -56,7 +59,8 @@ rationale ("couldn't use X from Y because of circular dependency"). If there
 were **no** deviations, do not add anything beyond the completion marker.
 
 12. Ask the user if they are satisfied with the result. If not, ask for feedback
-and keep working until the user is satisfied.
+and keep working until the user is satisfied. When follow-up adjustments are
+made, update `step-XY-walkthrough.md` to reflect the final state of the changes.
 
 13. Remove the completed item from `backlog.md`.
 
