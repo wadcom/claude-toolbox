@@ -23,7 +23,7 @@ it if ambiguity is so significant that it can't be resolved with a few simple
 questions. If the item needs refinement, explain which aspects are unclear and
 STOP HERE.
 
-4. Evaluate effort. If the item would take a senior engineer more than 30
+4. Evaluate effort. If the item would take a senior engineer more than 20
 minutes of focused work, recommend splitting it and STOP HERE.
 
 5. If there are details that need clarification, work with the user iteratively

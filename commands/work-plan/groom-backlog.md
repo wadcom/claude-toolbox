@@ -55,7 +55,7 @@ note explicitly why, and define what "done" looks like for that item.
 Each backlog item can have a SHORT description (no more than 3 sentences).
 
 The highest priority items (the ones we will work on next), should be the
-smallest (e.g. no more than 30 minutes of focused work of a senior engineer)
+smallest (e.g. no more than 20 minutes of focused work of a senior engineer)
 and have more details.
 
 Backlog must be comprehensible (no more than 15 items). To achieve this, 
