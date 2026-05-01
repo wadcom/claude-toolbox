@@ -45,6 +45,13 @@ This contrasts with a "reference" style that groups by category (e.g. all types,
 then all functions). Instead, introduce concepts in the order a newcomer would
 need them to build understanding incrementally.
 
+**Be concise, but keep the walkthrough.** Its job is to show how the parts fit
+together — the overall shape, the load-bearing decisions, and how the new
+pieces connect to each other and to the existing code. Preserve that
+connective tissue. What to cut: details a reader can pick up at a glance from
+the code or diff, restatements of what function names already say, and
+line-by-line narration of changes. Prefer one tight sentence over a paragraph.
+
 7. Update `backlog.md`: remove obsolete items, add new ones, split/merge items 
 or update descriptions as appropriate. See backlog principles section below.
 
