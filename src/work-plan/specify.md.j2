@@ -43,25 +43,29 @@ the user review it and ask if the user wants to improve this specification. If
 the user wants to improve it, repeat from step 1 using all information gathered
 by this point as a context.
 
-## Output Location And Format
+## Output Location
 
 Produce two files located in the directory `work-plan/YYYY-MM-DD-SUMMARY`:
-`goal.md` and `spec.md`.
+`goal.html` and `spec.html`.
 
-The directory name should contain the today's date (`YYYY-MM-DD`) and a short 
-(less than 30 characters) summary of the goal (`SUMMARY`), formatted as 
+The directory name should contain the today's date (`YYYY-MM-DD`) and a short
+(less than 30 characters) summary of the goal (`SUMMARY`), formatted as
 lowercase with hyphens, e.g. `improve-mobile-app`.
+
+## Artifact Files
+
+{% include 'artifact-files.md' %}
 
 ## Relationship Between Goal and Spec Files
 
-**Goal File (`goal.md`):**
+**Goal File (`goal.html`):**
 - Contains business requirements and objectives
 - Describes WHAT needs to be achieved and WHY
 - Written for product stakeholders
 - Focuses on user experience, business logic, success criteria
 - Avoids technical implementation details
 
-**Spec File (`spec.md`):**
+**Spec File (`spec.html`):**
 - Contains technical architecture and approach
 - Describes HOW to achieve the goals technically
 - Written for senior developers
@@ -78,52 +82,51 @@ developer to implement autonomously.
 
 ## Goal File
 
-The goal file `goal.md` should contain business-focused explanation of the 
+The goal file `goal.html` should contain business-focused explanation of the
 initiative's goal. It should contain no technical details (unless the goal is
 inherently technical).
 
-**Use this template structure for goal.md**:
+**Use this template structure for goal.html**:
 
-````markdown
-# [Feature/Task Name]
+````html
+<h1>[Feature/Task Name]</h1>
 
-## Purpose
+<h2>Purpose</h2>
 
-[Brief description of what we're implementing and why]
+<p>[Brief description of what we're implementing and why]</p>
 
-## Problem Statement
+<h2>Problem Statement</h2>
 
-[Brief explanation of the problem]
+<p>[Brief explanation of the problem]</p>
 
-## Solution
+<h2>Solution</h2>
 
-[Brief, high-level description of the solution]
+<p>[Brief, high-level description of the solution]</p>
 
-## Use Case Example
+<h2>Use Case Example</h2>
 
-[Examples of how the solution solves the problem]
+<p>[Examples of how the solution solves the problem]</p>
 
-## Scope
+<h2>Scope</h2>
 
-[High-level description of all system parts that need work to implement the
-solution]
+<p>[High-level description of all system parts that need work to implement
+the solution]</p>
 
-[Things explicitly out of scope]
+<p>[Things explicitly out of scope]</p>
 
-## Success Criteria
+<h2>Success Criteria</h2>
 
-[How success looks, besides what's listed in Use Case Example]
+<p>[How success looks, besides what's listed in Use Case Example]</p>
 
-## References
+<h2>References</h2>
 
-[Any documents, files or links that provide context for the initiative]
-
+<p>[Any documents, files or links that provide context for the initiative]</p>
 ````
 
 ## Spec File
 
 ### Every Spec Must Include:
-1. **Overview** - 2-4 sentences linking to goal.md
+1. **Overview** - 2-4 sentences linking to goal.html
 2. **Current State** - What exists today OR "Greenfield project. No existing 
 implementation."
 3. **Technical Architecture/Approach** - Architectural decisions, patterns, key 
@@ -201,7 +204,7 @@ need updates to reflect changes?
 
 ## Document Structure
 
-Both `goal.md` and `spec.md` must be structured as linear walkthroughs.
+Both `goal.html` and `spec.html` must be structured as linear walkthroughs.
 {% include 'linear-walkthrough.md' %}
 
 ## Writing Style
@@ -216,19 +219,19 @@ Both `goal.md` and `spec.md` must be structured as linear walkthroughs.
 
 ## Quality Check
 
-- [ ] Links to goal.md
+- [ ] Links to goal.html
 - [ ] Current state accurate
 - [ ] Architectural decisions clear with rationale
 - [ ] Code shows patterns, not implementations
 - [ ] Verification specific and testable
 - [ ] Out of scope explicit
-- [ ] No business requirements (→ goal.md)
+- [ ] No business requirements (→ goal.html)
 - [ ] No step-by-step instructions (→ backlog)
 - [ ] Senior dev could implement without constant questions
 
 ## Common Pitfalls
 
-1. Mixing business rationale with technical details (business → goal.md)
+1. Mixing business rationale with technical details (business → goal.html)
 2. Prescribing exact implementation (give direction, not code)
 3. Incomplete current state baseline
 4. Vague principles ("be modular" is not useful)

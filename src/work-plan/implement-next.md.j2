@@ -5,12 +5,16 @@ description: Implement the next backlog item
 You are tasked with implementing the next backlog item for an initiative. This
 includes evaluating readiness, planning, and implementing — all in one flow.
 
+## Artifact Files
+
+{% include 'artifact-files.md' %}
+
 ## Process Steps
 
 ### Phase 1: Load Context
 
-1. Ask the user to provide the work-plan directory. Then read FULLY the files
-`goal.md`, `spec.md`, `status.md` and `backlog.md` from that directory. This
+1. Ask the user to provide the work-plan directory. Then read FULLY the
+`goal`, `spec`, `status` and `backlog` artifacts from that directory. This
 will provide you with the necessary context.
 
 2. Identify the top item in the backlog. This is what you will work on.
@@ -53,25 +57,26 @@ explicit.
 9. Implement the plan. Track your progress using the task tools. If the plan
 specifies success criteria, make sure they are met before reporting completion.
 
-10. Write a walkthrough of the changes to `step-XY-walkthrough.md` in the
+10. Write a walkthrough of the changes to `step-XY-walkthrough.html` in the
 work-plan directory, where XY is the step number from the backlog item (e.g.
-`step-03-walkthrough.md`).
+`step-03-walkthrough.html`).
 {% include 'linear-walkthrough.md' %}
 Present a brief summary to the user and point them to the walkthrough file.
 
-11. Once done, update `status.md` in the work-plan directory, marking what you've
-done (see "Marking Completion" below).
+11. Once done, update `status.html` in the work-plan directory, marking what
+you've done (see "Marking Completion" below).
 
 12. If there **were** deviations from the plan, **briefly** describe them in
-`status.md`. Be factual (what is the deviation) and provide a very short
+`status.html`. Be factual (what is the deviation) and provide a very short
 rationale ("couldn't use X from Y because of circular dependency"). If there
 were **no** deviations, do not add anything beyond the completion marker.
 
-13. Ask the user if they are satisfied with the result. If not, ask for feedback
-and keep working until the user is satisfied. When follow-up adjustments are
-made, update `step-XY-walkthrough.md` to reflect the final state of the changes.
+13. Ask the user if they are satisfied with the result. If not, ask for
+feedback and keep working until the user is satisfied. When follow-up
+adjustments are made, update `step-XY-walkthrough.html` to reflect the final
+state of the changes.
 
-14. Remove the completed item from `backlog.md`.
+14. Remove the completed item from `backlog.html`.
 
 ### Marking Completion
 

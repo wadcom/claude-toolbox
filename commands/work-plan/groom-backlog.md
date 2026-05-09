@@ -4,14 +4,49 @@ description: Groom initiative's backlog
 
 You are tasked with grooming backlog for an existing initiative.
 
+## Artifact Files
+
+Initiative artifacts (`goal`, `spec`, `backlog`, `status`, `step-XY`,
+`step-XY-walkthrough`) are stored as HTML files in the work-plan directory.
+
+### Reading
+
+When asked to read an artifact named `NAME`, check the target directory for
+both `NAME.html` and `NAME.md`. Prefer `.html` if both exist; otherwise read
+whichever is present. References like `goal.md` from the user should be
+treated as the `goal` artifact regardless of extension — locate it the same
+way.
+
+### Writing
+
+Always write artifacts as `.html`. When writing an artifact, if its `.md`
+sibling exists in the same directory (legacy from before the HTML
+migration), delete the `.md` file in the same step so only the HTML version
+remains.
+
+### Format
+
+Use semantic markup:
+
+- `<h1>` for the document title; `<h2>`/`<h3>` for sections.
+- `<p>` for paragraphs.
+- `<ul>`/`<ol>` with `<li>` for lists.
+- `<strong>` for entity/component names.
+- `<code>` for fields, methods, paths, and other technical terms.
+- `<pre><code>` for multi-line code or pattern blocks.
+- `<a href="...">` for links.
+
+Do not include `<html>`, `<head>`, or `<body>` wrappers — the artifacts are
+content fragments, not full pages.
+
 ## Process Steps
 
-1. Ask the user to provide a backlog file (it should be named `backlog.md`). 
-Then read FULLY that file, and also files named `goal.md`, `spec.md` and 
-`status.md` located in the same directory.
+1. Ask the user to provide a backlog file (named `backlog.html`, or
+`backlog.md` for older initiatives). Then read FULLY that file, and also the
+`goal`, `spec` and `status` artifacts located in the same directory.
 
-For example, if user has provided a plan in file `a/b/c/backlog.md`, also read 
-files `a/b/c/goal.md`, `a/b/c/spec.md` and `a/b/c/status.md`. It will provide 
+For example, if user has provided a plan in file `a/b/c/backlog.html`, also
+read the `goal`, `spec` and `status` artifacts in `a/b/c/`. It will provide
 you with the necessary context.
 
 2. Go through each item of the backlog one by one. Make sure you understand
@@ -68,20 +103,20 @@ other.
 
 ### Backlog example
 
-````markdown
-# [Initiative Name] Backlog
+````html
+<h1>[Initiative Name] Backlog</h1>
 
-## Highest priority item
+<h2>Highest priority item</h2>
 
-## Next priority item
+<h2>Next priority item</h2>
 
-[May have up to 3 sentences of description]
+<p>[May have up to 3 sentences of description]</p>
 
-## Another item
+<h2>Another item</h2>
 
-## Low priority item which might need context
+<h2>Low priority item which might need context</h2>
 
-[May have up to 3 sentences of description]
+<p>[May have up to 3 sentences of description]</p>
 
 ...
 ````

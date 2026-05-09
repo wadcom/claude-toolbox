@@ -41,20 +41,20 @@ other.
 
 ### Backlog example
 
-````markdown
-# [Initiative Name] Backlog
+````html
+<h1>[Initiative Name] Backlog</h1>
 
-## Highest priority item
+<h2>Highest priority item</h2>
 
-## Next priority item
+<h2>Next priority item</h2>
 
-[May have up to 3 sentences of description]
+<p>[May have up to 3 sentences of description]</p>
 
-## Another item
+<h2>Another item</h2>
 
-## Low priority item which might need context
+<h2>Low priority item which might need context</h2>
 
-[May have up to 3 sentences of description]
+<p>[May have up to 3 sentences of description]</p>
 
 ...
 ````
@@ -65,14 +65,49 @@ supposedly described well enough by its title, so it doesn't have any
 description.
 
 
+## Artifact Files
+
+Initiative artifacts (`goal`, `spec`, `backlog`, `status`, `step-XY`,
+`step-XY-walkthrough`) are stored as HTML files in the work-plan directory.
+
+### Reading
+
+When asked to read an artifact named `NAME`, check the target directory for
+both `NAME.html` and `NAME.md`. Prefer `.html` if both exist; otherwise read
+whichever is present. References like `goal.md` from the user should be
+treated as the `goal` artifact regardless of extension — locate it the same
+way.
+
+### Writing
+
+Always write artifacts as `.html`. When writing an artifact, if its `.md`
+sibling exists in the same directory (legacy from before the HTML
+migration), delete the `.md` file in the same step so only the HTML version
+remains.
+
+### Format
+
+Use semantic markup:
+
+- `<h1>` for the document title; `<h2>`/`<h3>` for sections.
+- `<p>` for paragraphs.
+- `<ul>`/`<ol>` with `<li>` for lists.
+- `<strong>` for entity/component names.
+- `<code>` for fields, methods, paths, and other technical terms.
+- `<pre><code>` for multi-line code or pattern blocks.
+- `<a href="...">` for links.
+
+Do not include `<html>`, `<head>`, or `<body>` wrappers — the artifacts are
+content fragments, not full pages.
+
 ## Process Steps
 
-1. Ask the user to provide a goal file (it should be named `goal.md`). Then 
-read FULLY that file, and also files named `spec.md` and `status.md` located in 
-the same directory.
+1. Ask the user to provide a goal file (named `goal.html`, or `goal.md` for
+older initiatives). Then read FULLY that file, and also the `spec` and
+`status` artifacts located in the same directory.
 
-For example, if user has provided a plan in file `a/b/c/goal.md`, also read 
-files `a/b/c/spec.md` and `a/b/c/status.md`. It will provide you with the 
+For example, if user has provided a plan in file `a/b/c/goal.html`, also read
+the `spec` and `status` artifacts in `a/b/c/`. It will provide you with the
 necessary context.
 
 2. Think hard to understand the difference between the current state and the
@@ -92,5 +127,5 @@ priority items are well understood and scoped (confirm this with the user).
 
 7. Make sure again that the backlog follows the described principles.
 
-8. Write out the backlog to file named `backlog.md` in the same directory where
-`goal.md` is located.
+8. Write out the backlog to file named `backlog.html` in the same directory
+where the goal file is located.

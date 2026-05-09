@@ -32,20 +32,20 @@ other.
 
 ### Backlog example
 
-````markdown
-# [Initiative Name] Backlog
+````html
+<h1>[Initiative Name] Backlog</h1>
 
-## Highest priority item
+<h2>Highest priority item</h2>
 
-## Next priority item
+<h2>Next priority item</h2>
 
-[May have up to 3 sentences of description]
+<p>[May have up to 3 sentences of description]</p>
 
-## Another item
+<h2>Another item</h2>
 
-## Low priority item which might need context
+<h2>Low priority item which might need context</h2>
 
-[May have up to 3 sentences of description]
+<p>[May have up to 3 sentences of description]</p>
 
 ...
 ````

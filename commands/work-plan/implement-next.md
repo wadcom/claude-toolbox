@@ -5,12 +5,47 @@ description: Implement the next backlog item
 You are tasked with implementing the next backlog item for an initiative. This
 includes evaluating readiness, planning, and implementing — all in one flow.
 
+## Artifact Files
+
+Initiative artifacts (`goal`, `spec`, `backlog`, `status`, `step-XY`,
+`step-XY-walkthrough`) are stored as HTML files in the work-plan directory.
+
+### Reading
+
+When asked to read an artifact named `NAME`, check the target directory for
+both `NAME.html` and `NAME.md`. Prefer `.html` if both exist; otherwise read
+whichever is present. References like `goal.md` from the user should be
+treated as the `goal` artifact regardless of extension — locate it the same
+way.
+
+### Writing
+
+Always write artifacts as `.html`. When writing an artifact, if its `.md`
+sibling exists in the same directory (legacy from before the HTML
+migration), delete the `.md` file in the same step so only the HTML version
+remains.
+
+### Format
+
+Use semantic markup:
+
+- `<h1>` for the document title; `<h2>`/`<h3>` for sections.
+- `<p>` for paragraphs.
+- `<ul>`/`<ol>` with `<li>` for lists.
+- `<strong>` for entity/component names.
+- `<code>` for fields, methods, paths, and other technical terms.
+- `<pre><code>` for multi-line code or pattern blocks.
+- `<a href="...">` for links.
+
+Do not include `<html>`, `<head>`, or `<body>` wrappers — the artifacts are
+content fragments, not full pages.
+
 ## Process Steps
 
 ### Phase 1: Load Context
 
-1. Ask the user to provide the work-plan directory. Then read FULLY the files
-`goal.md`, `spec.md`, `status.md` and `backlog.md` from that directory. This
+1. Ask the user to provide the work-plan directory. Then read FULLY the
+`goal`, `spec`, `status` and `backlog` artifacts from that directory. This
 will provide you with the necessary context.
 
 2. Identify the top item in the backlog. This is what you will work on.
@@ -53,9 +88,9 @@ explicit.
 9. Implement the plan. Track your progress using the task tools. If the plan
 specifies success criteria, make sure they are met before reporting completion.
 
-10. Write a walkthrough of the changes to `step-XY-walkthrough.md` in the
+10. Write a walkthrough of the changes to `step-XY-walkthrough.html` in the
 work-plan directory, where XY is the step number from the backlog item (e.g.
-`step-03-walkthrough.md`).
+`step-03-walkthrough.html`).
 Use the **linear walkthrough** approach: present information as a guided
 narrative where each piece builds naturally on what came before. The reader
 should never encounter an unexplained concept — every idea is introduced before
@@ -74,24 +109,25 @@ the code or diff, restatements of what function names already say, and
 line-by-line narration of changes. Prefer one tight sentence over a paragraph.
 Present a brief summary to the user and point them to the walkthrough file.
 
-11. Once done, update `status.md` in the work-plan directory, marking what you've
-done (see "Marking Completion" below).
+11. Once done, update `status.html` in the work-plan directory, marking what
+you've done (see "Marking Completion" below).
 
 12. If there **were** deviations from the plan, **briefly** describe them in
-`status.md`. Be factual (what is the deviation) and provide a very short
+`status.html`. Be factual (what is the deviation) and provide a very short
 rationale ("couldn't use X from Y because of circular dependency"). If there
 were **no** deviations, do not add anything beyond the completion marker.
 
-13. Ask the user if they are satisfied with the result. If not, ask for feedback
-and keep working until the user is satisfied. When follow-up adjustments are
-made, update `step-XY-walkthrough.md` to reflect the final state of the changes.
+13. Ask the user if they are satisfied with the result. If not, ask for
+feedback and keep working until the user is satisfied. When follow-up
+adjustments are made, update `step-XY-walkthrough.html` to reflect the final
+state of the changes.
 
-14. Remove the completed item from `backlog.md`.
+14. Remove the completed item from `backlog.html`.
 
 ### Marking Completion
 
-When marking item as completed, write the following line to `status.md`:
-`COMPLETED step <X>: <SUMMARY>`
+When marking item as completed, append a new entry to `status.html` in the
+form `<p>COMPLETED step <X>: <SUMMARY></p>`.
 
 `<X>` is the number of the completed step.
 
@@ -101,9 +137,9 @@ When marking item as completed, write the following line to `status.md`:
  * be understandable without the context of the goal.
 
 Examples:
- * GOOD: "COMPLETED step 7: Extract helpers from Subscription tests"
- * BAD: "COMPLETED step 7: Extract _create_new()" - not understandable without
- context.
+ * GOOD: `<p>COMPLETED step 7: Extract helpers from Subscription tests</p>`
+ * BAD: `<p>COMPLETED step 7: Extract _create_new()</p>` — not understandable
+ without context.
 
 Rule of thumb: everything after "step ..." should be usable as a good commit
 title.

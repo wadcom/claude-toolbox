@@ -8,13 +8,18 @@ initiative without going through the formal backlog/spec preparation process.
 This command is ideal for quick fixes, minor improvements, or small features
 that don't warrant a full planning cycle.
 
+## Artifact Files
+
+{% include 'artifact-files.md' %}
+
 ## Process Steps
 
-1. Ask the user to provide a goal file (it should be named `goal.md`). Then
-read FULLY files named `spec.md`, `backlog.md` and `status.md` located in the
-same directory as the goal. For example, if user has provided a file
-`a/b/c/goal.md`, also read files `a/b/c/spec.md`, `a/b/c/backlog.md` and
-`a/b/c/status.md`. It will provide you with the necessary context.
+1. Ask the user to provide a goal file (named `goal.html`, or `goal.md` for
+older initiatives). Then read FULLY the `spec`, `backlog` and `status`
+artifacts located in the same directory as the goal. For example, if user
+has provided a file `a/b/c/goal.html`, also read the `spec`, `backlog` and
+`status` artifacts in `a/b/c/`. It will provide you with the necessary
+context.
 
 2. Ask the user what small change they want to implement.
 
@@ -29,18 +34,18 @@ understand the change. Use TodoWrite to track them.
   - Assess user's input and all available information, decide if you need to
   add more questions to the list. If so, use TodoWrite to update the list.
 
-5. Write out the implementation plan to a file named `step-XY.md` (`step-01.md`
-if there are no other `step-*.md` files yet, or the next sequential number if
-there are).
+5. Write out the implementation plan to a file named `step-XY.html`
+(`step-01.html` if there are no other `step-*` files yet, or the next
+sequential number if there are).
 
 The plan should contain important high level details without being overly
 specific. A senior developer should be able to read this step plan and
-review/verify overall design, key decisions etc. without being bogged down by
-minutia.
+review/verify overall design, key decisions etc. without being bogged down
+by minutia.
 
-The plan should be written so that if a developer reads `goal.md`, `spec.md`
-and the plan, they would have complete context to immediately implement the
-step.
+The plan should be written so that if a developer reads `goal.html`,
+`spec.html` and the plan, they would have complete context to immediately
+implement the step.
 
 6. Ask if the user is satisfied with the plan. If not, ask what needs to be
 adjusted and iterate on the plan.
@@ -52,20 +57,20 @@ is met before reporting completion.
 8. Present a summary of what was done to the user.
 {% include 'linear-walkthrough.md' %}
 
-9. Once you are done, create or update a file named `status.md` (located in the
-same directory as `spec.md`), marking what you've done (see "Marking
-Completion" below).
+9. Once you are done, create or update a file named `status.html` (located
+in the same directory as `spec.html`), marking what you've done (see
+"Marking Completion" below).
 
-10. If there **were** changes to the original plan, **briefly** describe them in
-`status.md` as well. Be factual (what is the deviation from the plan) but
-provide a very short rationale ("couldn't use X from Y because of circular
-dependency"). If there was **NO** changes, do not document anything about
-deviations in the status.
+10. If there **were** changes to the original plan, **briefly** describe
+them in `status.html` as well. Be factual (what is the deviation from the
+plan) but provide a very short rationale ("couldn't use X from Y because of
+circular dependency"). If there was **NO** changes, do not document anything
+about deviations in the status.
 
 11. Ask the user if they are satisfied with the result. If no, ask for the
 feedback and keep working until the user is satisfied.
 
-**IMPORTANT**: Do NOT update `backlog.md`. This is a one-off change that
+**IMPORTANT**: Do NOT update `backlog.html`. This is a one-off change that
 bypasses the formal backlog process.
 
 ## Asking Questions
