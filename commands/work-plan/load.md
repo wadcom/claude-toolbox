@@ -70,6 +70,13 @@ pieces connect to each other and to the existing code. Preserve that
 connective tissue. What to cut: details a reader can pick up at a glance from
 the code or diff, restatements of what function names already say, and
 line-by-line narration of changes. Prefer one tight sentence over a paragraph.
+
+**Use SVG diagrams when they help.** When the walkthrough is written to an
+HTML artifact, embed inline `<svg>` diagrams wherever they convey structure,
+flow, or relationships more clearly than prose — e.g. component dependencies,
+state machines, before/after layouts, data flow. Keep each diagram small and
+focused, and pair it with a sentence saying what to look at. Skip diagrams
+when prose is just as clear; do not include them in chat summaries.
    Cover the goal, current status (what's done, what's in progress), and note if
    step plans are available for reference.
 
