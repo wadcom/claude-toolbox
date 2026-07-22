@@ -64,12 +64,55 @@ This contrasts with a "reference" style that groups by category (e.g. all types,
 then all functions). Instead, introduce concepts in the order a newcomer would
 need them to build understanding incrementally.
 
-**Be concise, but keep the walkthrough.** Its job is to show how the parts fit
-together — the overall shape, the load-bearing decisions, and how the new
-pieces connect to each other and to the existing code. Preserve that
-connective tissue. What to cut: details a reader can pick up at a glance from
-the code or diff, restatements of what function names already say, and
-line-by-line narration of changes. Prefer one tight sentence over a paragraph.
+**Write for a cold reader.** The reader has not seen the plan, the backlog, or
+this conversation, and did not watch the work happen. Concretely:
+
+- Never reference the process: no "the next backlog item", "as planned", "the
+  existing X", "as discussed".
+- Gloss every named function, term, or concept at first mention, in plain
+  words: "`clear-hop?` (checks that a straight line between two points crosses
+  no obstacle)".
+- Do not coin shorthand ("the outline gate") without defining it first — and
+  prefer not coining it at all.
+
+**Problem before mechanism.** Open each change with one or two sentences on
+the situation it handles: what exists, what goes wrong or is missing. Only
+then describe how the code addresses it. A mechanism without its motivation is
+unreadable.
+
+**One change per section or paragraph.** A change is one function, one
+behavior, one decision. Never chain two changes into one paragraph.
+
+**Concise means fewer ideas, never denser sentences.** Keep the connective
+tissue — the overall shape, the load-bearing decisions, how the pieces fit
+together. Cut whole topics instead: line-by-line narration, details visible in
+the code at a glance, restatements of what names already say. Write what
+remains in short active sentences, one idea each. A plain paragraph the reader
+understands beats a tight sentence they must decode.
+
+**Show, don't abstract.** For algorithmic or geometric material, give one tiny
+concrete scenario ("the goal sits inside a closed room; the search stops at
+the doorway node") — it explains more than any abstract description.
+
+Example — wrong: dense, coined jargon, references to the process:
+
+> slide-along-incident-edges refines the winning node: each incident edge
+> contributes the goal's perpendicular foot as a candidate, accepted only when
+> it beats the current best distance and lies on an obstacle outline; the
+> outline gate keeps the endpoint off tangent edges that cross open terrain.
+
+Example — right: problem first, one idea per sentence, terms glossed:
+
+> Problem: when the goal is unreachable, the search stops at the closest
+> reachable graph node. Graph nodes sit on obstacle corners. The truly closest
+> point often lies partway along an edge between corners.
+>
+> The fix: `slide-along-incident-edges` looks at every edge touching the
+> winning node. For each edge it finds the point on that edge nearest to the
+> goal. That point becomes the new endpoint only if it is closer to the goal
+> and lies on an obstacle outline. The outline check matters because some
+> edges cross open ground; a point there would leave the endpoint standing in
+> the open, away from any wall.
 
 **Use SVG diagrams when they help.** When the walkthrough is written to an
 HTML artifact, embed inline `<svg>` diagrams wherever they convey structure,

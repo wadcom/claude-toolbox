@@ -61,22 +61,32 @@ specifies success criteria, make sure they are met before reporting completion.
 work-plan directory, where XY is the step number from the backlog item (e.g.
 `step-03-walkthrough.html`).
 {% include 'linear-walkthrough.md' %}
-Present a brief summary to the user and point them to the walkthrough file.
 
-11. Once done, update `status.html` in the work-plan directory, marking what
+11. **Fresh-eyes review of the walkthrough.** Launch a subagent whose ONLY
+input is the walkthrough file — give it no diff, no plan, and no conversation
+context. Instruct it to read the file and, for each paragraph, either restate
+the meaning in its own words or flag it: list every term it cannot unpack and
+every reference to context it does not have. Rewrite the flagged passages and
+re-run the review until nothing is flagged. This is the only honest "cold
+reader" test — the author always has too much context to perform it.
+
+12. Present a brief summary to the user and point them to the walkthrough
+file.
+
+13. Once done, update `status.html` in the work-plan directory, marking what
 you've done (see "Marking Completion" below).
 
-12. If there **were** deviations from the plan, **briefly** describe them in
+14. If there **were** deviations from the plan, **briefly** describe them in
 `status.html`. Be factual (what is the deviation) and provide a very short
 rationale ("couldn't use X from Y because of circular dependency"). If there
 were **no** deviations, do not add anything beyond the completion marker.
 
-13. Ask the user if they are satisfied with the result. If not, ask for
+15. Ask the user if they are satisfied with the result. If not, ask for
 feedback and keep working until the user is satisfied. When follow-up
 adjustments are made, update `step-XY-walkthrough.html` to reflect the final
-state of the changes.
+state of the changes and repeat the fresh-eyes review.
 
-14. Remove the completed item from `backlog.html`.
+16. Remove the completed item from `backlog.html`.
 
 ### Marking Completion
 
