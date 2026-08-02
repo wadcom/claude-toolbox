@@ -101,6 +101,32 @@ This contrasts with a "reference" style that groups by category (e.g. all types,
 then all functions). Instead, introduce concepts in the order a newcomer would
 need them to build understanding incrementally.
 
+**Length follows the difficulty of the idea, not the size of the change.** Ask
+how hard the change is to understand, then spend words on that alone:
+
+- A mechanical change — a new flag, a moved function, a renamed field — needs a
+  few paragraphs. Do not spell it out to the smallest detail.
+- A hard concept — a new algorithm, a subtle invariant, a non-obvious tradeoff
+  — gets as many words as it takes. Do not compress it to hit a length.
+
+Most steps fall in the first group, so most walkthroughs are short. When you
+write a long one, be able to name the difficult idea that earned the length.
+
+**Write at the level of behavior, not implementation.** State what the code now
+does that it did not do before, and what decision made it work that way. The
+reader who wants line-by-line detail opens the diff. Do not tour the call
+chain. Do not narrate each function in file order.
+
+When a walkthrough runs long for any other reason, cut whole topics in this
+order:
+
+1. Tests. Name what they cover in one sentence. Do not list cases.
+2. Helper functions that serve one caller. Fold them into the caller's
+   paragraph or drop them.
+3. Mechanics the code shows at a glance: renames, argument threading, import
+   changes, moved code.
+4. Any sentence that restates what a name already says.
+
 **Write for a cold reader.** The reader has not seen the plan, the backlog, or
 this conversation, and did not watch the work happen. Concretely:
 
@@ -122,8 +148,7 @@ behavior, one decision. Never chain two changes into one paragraph.
 
 **Concise means fewer ideas, never denser sentences.** Keep the connective
 tissue — the overall shape, the load-bearing decisions, how the pieces fit
-together. Cut whole topics instead: line-by-line narration, details visible in
-the code at a glance, restatements of what names already say. Write what
+together. Cut whole topics instead, in the order listed above. Write what
 remains in short active sentences, one idea each. A plain paragraph the reader
 understands beats a tight sentence they must decode.
 
@@ -155,16 +180,26 @@ Example — right: problem first, one idea per sentence, terms glossed:
 HTML artifact, embed inline `<svg>` diagrams wherever they convey structure,
 flow, or relationships more clearly than prose — e.g. component dependencies,
 state machines, before/after layouts, data flow. Keep each diagram small and
-focused, and pair it with a sentence saying what to look at. Skip diagrams
-when prose is just as clear; do not include them in chat summaries.
+focused, and pair it with a sentence saying what to look at. A diagram often
+replaces three paragraphs; prefer it when it does. Skip diagrams when prose is
+just as clear; do not include them in chat summaries.
 
-11. **Fresh-eyes review of the walkthrough.** Launch a subagent whose ONLY
-input is the walkthrough file — give it no diff, no plan, and no conversation
-context. Instruct it to read the file and, for each paragraph, either restate
-the meaning in its own words or flag it: list every term it cannot unpack and
-every reference to context it does not have. Rewrite the flagged passages and
-re-run the review until nothing is flagged. This is the only honest "cold
-reader" test — the author always has too much context to perform it.
+11. **Fresh-eyes review of the walkthrough.** The author always has too much
+context to judge their own writing, so a subagent with none is the only honest
+"cold reader" test. Run it once.
+
+Launch one subagent on the Sonnet model. Its ONLY input is the walkthrough file
+path — give it no diff, no plan, and no conversation context. Instruct it to
+read the file and report **only blockers**, as a flat list:
+
+- a term, name, or phrase it cannot unpack from the file alone;
+- a reference to context the file does not contain.
+
+Tell it to report at most eight items, to skip style opinions and suggested
+rewrites, and to return an empty list when it finds none. Do not ask it to
+restate paragraphs.
+
+Fix what it reports. Do not run a second pass.
 
 12. Present a brief summary to the user and point them to the walkthrough
 file.
@@ -180,7 +215,8 @@ were **no** deviations, do not add anything beyond the completion marker.
 15. Ask the user if they are satisfied with the result. If not, ask for
 feedback and keep working until the user is satisfied. When follow-up
 adjustments are made, update `step-XY-walkthrough.html` to reflect the final
-state of the changes and repeat the fresh-eyes review.
+state of the changes. Repeat the fresh-eyes review only when the update names a
+concept the file did not name before.
 
 16. Remove the completed item from `backlog.html`.
 

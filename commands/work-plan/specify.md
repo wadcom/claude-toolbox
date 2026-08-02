@@ -246,6 +246,32 @@ This contrasts with a "reference" style that groups by category (e.g. all types,
 then all functions). Instead, introduce concepts in the order a newcomer would
 need them to build understanding incrementally.
 
+**Length follows the difficulty of the idea, not the size of the change.** Ask
+how hard the change is to understand, then spend words on that alone:
+
+- A mechanical change — a new flag, a moved function, a renamed field — needs a
+  few paragraphs. Do not spell it out to the smallest detail.
+- A hard concept — a new algorithm, a subtle invariant, a non-obvious tradeoff
+  — gets as many words as it takes. Do not compress it to hit a length.
+
+Most steps fall in the first group, so most walkthroughs are short. When you
+write a long one, be able to name the difficult idea that earned the length.
+
+**Write at the level of behavior, not implementation.** State what the code now
+does that it did not do before, and what decision made it work that way. The
+reader who wants line-by-line detail opens the diff. Do not tour the call
+chain. Do not narrate each function in file order.
+
+When a walkthrough runs long for any other reason, cut whole topics in this
+order:
+
+1. Tests. Name what they cover in one sentence. Do not list cases.
+2. Helper functions that serve one caller. Fold them into the caller's
+   paragraph or drop them.
+3. Mechanics the code shows at a glance: renames, argument threading, import
+   changes, moved code.
+4. Any sentence that restates what a name already says.
+
 **Write for a cold reader.** The reader has not seen the plan, the backlog, or
 this conversation, and did not watch the work happen. Concretely:
 
@@ -267,8 +293,7 @@ behavior, one decision. Never chain two changes into one paragraph.
 
 **Concise means fewer ideas, never denser sentences.** Keep the connective
 tissue — the overall shape, the load-bearing decisions, how the pieces fit
-together. Cut whole topics instead: line-by-line narration, details visible in
-the code at a glance, restatements of what names already say. Write what
+together. Cut whole topics instead, in the order listed above. Write what
 remains in short active sentences, one idea each. A plain paragraph the reader
 understands beats a tight sentence they must decode.
 
@@ -300,8 +325,9 @@ Example — right: problem first, one idea per sentence, terms glossed:
 HTML artifact, embed inline `<svg>` diagrams wherever they convey structure,
 flow, or relationships more clearly than prose — e.g. component dependencies,
 state machines, before/after layouts, data flow. Keep each diagram small and
-focused, and pair it with a sentence saying what to look at. Skip diagrams
-when prose is just as clear; do not include them in chat summaries.
+focused, and pair it with a sentence saying what to look at. A diagram often
+replaces three paragraphs; prefer it when it does. Skip diagrams when prose is
+just as clear; do not include them in chat summaries.
 
 ## Writing Style
 

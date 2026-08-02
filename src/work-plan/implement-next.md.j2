@@ -62,13 +62,22 @@ work-plan directory, where XY is the step number from the backlog item (e.g.
 `step-03-walkthrough.html`).
 {% include 'linear-walkthrough.md' %}
 
-11. **Fresh-eyes review of the walkthrough.** Launch a subagent whose ONLY
-input is the walkthrough file — give it no diff, no plan, and no conversation
-context. Instruct it to read the file and, for each paragraph, either restate
-the meaning in its own words or flag it: list every term it cannot unpack and
-every reference to context it does not have. Rewrite the flagged passages and
-re-run the review until nothing is flagged. This is the only honest "cold
-reader" test — the author always has too much context to perform it.
+11. **Fresh-eyes review of the walkthrough.** The author always has too much
+context to judge their own writing, so a subagent with none is the only honest
+"cold reader" test. Run it once.
+
+Launch one subagent on the Sonnet model. Its ONLY input is the walkthrough file
+path — give it no diff, no plan, and no conversation context. Instruct it to
+read the file and report **only blockers**, as a flat list:
+
+- a term, name, or phrase it cannot unpack from the file alone;
+- a reference to context the file does not contain.
+
+Tell it to report at most eight items, to skip style opinions and suggested
+rewrites, and to return an empty list when it finds none. Do not ask it to
+restate paragraphs.
+
+Fix what it reports. Do not run a second pass.
 
 12. Present a brief summary to the user and point them to the walkthrough
 file.
@@ -84,7 +93,8 @@ were **no** deviations, do not add anything beyond the completion marker.
 15. Ask the user if they are satisfied with the result. If not, ask for
 feedback and keep working until the user is satisfied. When follow-up
 adjustments are made, update `step-XY-walkthrough.html` to reflect the final
-state of the changes and repeat the fresh-eyes review.
+state of the changes. Repeat the fresh-eyes review only when the update names a
+concept the file did not name before.
 
 16. Remove the completed item from `backlog.html`.
 
