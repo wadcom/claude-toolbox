@@ -1,0 +1,59 @@
+---
+description: Implement a backlog item from a previously approved plan
+---
+
+You are tasked with implementing a backlog item from a plan artifact that
+`/work-plan:plan-next` produced and the user approved. Do not re-plan and do
+not re-open the plan's decisions.
+
+Step numbering restarts in each section; follow the sections in order.
+
+## Artifact Files
+
+{% include 'artifact-files.md' %}
+
+## Execution Modes
+
+Pick the wrap-up section based on where you run:
+
+- **Local session** (default): the user reviews the result in this
+  conversation. Do NOT commit — committing is the user's job.
+- **Remote session** (environment variable `CLAUDE_CODE_REMOTE` is `true`):
+  the user reviews the result as a pushed branch. Never wait for mid-run
+  input; if required information is missing, stop and report the gap instead
+  of asking.
+
+## Process Steps
+
+### Load Context
+
+1. Determine the work-plan directory from the kickoff message, or ask the
+user. Then read FULLY the `goal`, `spec`, `status` and `backlog` artifacts
+from that directory.
+
+2. Read the plan from `step-XY-plan.html`, where XY is the step number of the
+top backlog item. If the file is missing, STOP and report that the item has
+no approved plan (`/work-plan:plan-next` creates one).
+
+{% include 'implementation-phase.md' %}
+
+### Wrap Up (local session)
+
+{% include 'wrap-up-interactive.md' %}
+
+### Wrap Up (remote session)
+
+1. Remove the completed item from `backlog.html`.
+
+2. Commit all changes — code, tests, walkthrough, `status.html`,
+`backlog.html` — on the session branch. Use the completion summary as the
+commit title.
+
+3. Push the branch so the user can review the changes as a pull request.
+
+4. Present a brief summary: what changed, test results, the branch name, and
+the walkthrough file path.
+
+### Marking Completion
+
+{% include 'marking-completion.md' %}

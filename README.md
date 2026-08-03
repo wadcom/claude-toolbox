@@ -42,6 +42,9 @@ principle applies equally well to AI-assisted development.
  * `/work-plan:specify` to start a new initiative → `/work-plan:create-backlog`
  to prioritize work.
  * `/work-plan:implement-next` to implement the next backlog item.
+ * `/work-plan:plan-next` → `/work-plan:implement-step` to split the same flow
+ into two sessions: plan interactively, then implement from the persisted plan
+ (locally or in a cloud session).
  * `/work-plan:one-off` for small changes that don't need formal backlog planning.
  * `/work-plan:adjust` when requirements/understanding change.
  * `/work-plan:groom-backlog` to keep your backlog manageable.
