@@ -1,10 +1,12 @@
 ---
-description: Adjust the goal/plan of an existing initiative
+description: Implement a backlog item from a previously approved plan
 ---
 
-You are tasked with updating the goal or plan of an existing initiative. You
-have to work with user iteratively and incrementally to understand required
-changes and update the documents accodingly.
+You are tasked with implementing a backlog item from a plan artifact that
+`/work-plan:plan-next` produced and the user approved. Do not re-plan and do
+not re-open the plan's decisions.
+
+Step numbering restarts in each section; follow the sections in order.
 
 ## Artifact Files
 
@@ -72,37 +74,78 @@ Use plain CommonMark: `#` for the document title, `##`/`###` for sections,
 `-` for lists, backticks for technical terms, and fenced blocks for code. Do
 not embed HTML in a Markdown artifact.
 
+## Execution Modes
+
+Pick the wrap-up section based on where you run:
+
+- **Local session** (default): the user reviews the result in this
+  conversation. Do NOT commit — committing is the user's job.
+- **Remote session** (environment variable `CLAUDE_CODE_REMOTE` is `true`):
+  the user reviews the result as a pushed branch. Never wait for mid-run
+  input; if required information is missing, stop and report the gap instead
+  of asking.
+
 ## Process Steps
 
-1. Ask the user to provide a goal file (named `goal.html`, or `goal.md` for
-older initiatives). Then read FULLY the `backlog`, `spec` and `status`
-artifacts located in the same directory as the plan. For example, if user
-has provided a file `a/b/c/goal.html`, also read the `backlog`, `spec` and
-`status` artifacts in `a/b/c/`. It will provide you with the necessary
-context.
+### Load Context
 
-2. Ask the user what changes are needed to the current goal/spec. 
+1. Determine the work-plan directory from the kickoff message, or ask the
+user. Then read FULLY the `goal`, `spec`, `status` and `backlog` artifacts
+from that directory.
 
-3. Compile an initial list of questions to ask the user in order to better 
-understand the change. Use TodoWrite to track them.
-  - **IMPORTANT**: each question should be put into a separate TODO item.
+2. Read the plan from `step-XY-plan.html`, where XY is the step number of the
+top backlog item. If the file is missing, STOP and report that the item has
+no approved plan (`/work-plan:plan-next` creates one).
 
-4. Iterate while the TODO list is not empty.
-  - **IMPORTANT**: ALWAYS ask ONE question at a time
-  - Take one item from the TODO list and ask the user this question. Then 
-  remove it from the list with TodoWrite tool.
-  - Assess user's input and all available information, decide if you need to 
-  add more questions to the list. If so, use TodoWrite to update the list.
+### Implement
 
-5. Once you are done, update `goal.html` to contain new business requirements
-(if any). **IMPORTANT**: this file should not contain any technical details.
+1. Implement the plan. Track your progress using the task tools. If the plan
+specifies success criteria, make sure they are met before reporting completion.
 
-6. If needed, update `spec.html`. **IMPORTANT**: this file should contain
-overall technical direction, without lower-level details and references to
-volatile information (e.g. line numbers).
+2. Update `status.md` in the work-plan directory, marking what you've done
+(see "Marking Completion" below).
 
-When rewriting `goal.html` or `spec.html`, maintain the linear walkthrough
-structure.
+3. If there **were** deviations from the plan, describe them in `status.md` as
+ONE indented line per deviation. Be factual (what is the deviation) and give a
+very short rationale ("couldn't use X from Y because of circular dependency").
+If there were **no** deviations, do not add anything beyond the completion
+line.
+
+### Wrap Up (local session)
+
+1. Present a brief summary of the changes to the user, then suggest a concise
+commit message for the work.
+
+2. Ask the user explicitly whether they want a walkthrough of the changes, or
+any adjustments to the work just done. Write a walkthrough only if the user
+asks for one (see "Walkthrough (On Request)" below).
+
+3. If the user asks for adjustments, keep working until the user is satisfied.
+When a walkthrough file already exists, update it to reflect the final state of
+the changes. Repeat the fresh-eyes review only when the update names a concept
+the file did not name before.
+
+4. Remove the completed item from `backlog.md`.
+
+### Wrap Up (remote session)
+
+1. Remove the completed item from `backlog.md`.
+
+2. Commit all changes — code, tests, `status.md`, `backlog.md` — on the
+session branch. Use the completion summary as the commit title.
+
+3. Push the branch so the user can review the changes as a pull request.
+
+4. Present a brief summary: what changed, test results, and the branch name.
+
+### Walkthrough (On Request)
+
+Write a walkthrough of the changes only when the user asks for one. Never
+write it as part of the default flow.
+
+1. Write the walkthrough to `step-XY-walkthrough.html` in the work-plan
+directory, where XY is the step number of the plan artifact for this work (e.g.
+`step-03-walkthrough.html`).
 Use the **linear walkthrough** approach: present information as a guided
 narrative where each piece builds naturally on what came before. The reader
 should never encounter an unexplained concept — every idea is introduced before
@@ -196,88 +239,44 @@ focused, and pair it with a sentence saying what to look at. A diagram often
 replaces three paragraphs; prefer it when it does. Skip diagrams when prose is
 just as clear; do not include them in chat summaries.
 
-7. Update `backlog.md`: remove obsolete items, add new ones, split/merge
-items or update descriptions as appropriate. See backlog principles section
-below.
+2. **Fresh-eyes review of the walkthrough.** The author always has too much
+context to judge their own writing, so a subagent with none is the only honest
+"cold reader" test. Run it once.
 
-## Asking Questions
+Launch one subagent on the Sonnet model. Its ONLY input is the walkthrough file
+path — give it no diff, no plan, and no conversation context. Instruct it to
+read the file and report **only blockers**, as a flat list:
 
-When asking questions, use the following guidelines:
+- a term, name, or phrase it cannot unpack from the file alone;
+- a reference to context the file does not contain.
 
-1. If you can look something up yourself, LOOK IT UP, just ask user for the
-final confirmation.
+Tell it to report at most eight items, to skip style opinions and suggested
+rewrites, and to return an empty list when it finds none. Do not ask it to
+restate paragraphs.
 
-2. Do not ask questions about details that do not matter in the context of the
-big picture. Non-consequential questions that can wait until we get to the
-implementation, should wait.
+Fix what it reports. Do not run a second pass.
 
-3. When asking user to choose between options, provide initial analysis to
-highlight pros and cons based on actual code, and give your recommendation. The
-final decision should still be made by the user.
+3. Point the user to the walkthrough file path.
 
-## Backlog Principles
+### Marking Completion
 
-Backlog is a PRIORITIZED list of things to be done. Higher priority items are
-at the top.
+When marking item as completed, append a new line to `status.md` in the form
+`COMPLETED step <X>: <SUMMARY>`.
 
-Backlog is a FLAT list, there is no nesting structure. Each item stands on its
-own.
+`<X>` is the number of the completed step.
 
-Backlog items are like rocks. When you break a rock, you get several rocks. So
-are backlog items: they can be split into smaller items or grouped back into
-larger ones.
+`<SUMMARY>` is a summary of the change, adhering to the following rules:
+ * be 50 characters or shorter;
+ * start with a capital letter;
+ * be understandable without the context of the goal.
 
-Each backlog item should be a **vertical slice**: it delivers a small piece of
-end-to-end functionality that can be checked or tested manually once
-implemented. Prefer slicing that produces something observable (a new UI
-element, an API response, a CLI output) over slicing by technical layer (e.g.
-"add database schema", then "add service layer", then "add UI"). When vertical
-slicing is not practical (e.g. pure infrastructure or foundational plumbing),
-note explicitly why, and define what "done" looks like for that item.
+Examples:
+ * GOOD: `COMPLETED step 7: Extract helpers from Subscription tests`
+ * BAD: `COMPLETED step 7: Extract _create_new()` — not understandable
+ without context.
 
-A backlog item is a title. The default is NO description at all. Add one only
-when the title alone would not recall what the item is about, and then keep it
-to 3 sentences at most.
+Rule of thumb: everything after "step ..." should be usable as a good commit
+title.
 
-A description states WHAT to do. It never states why the item matters, how the
-code works today, or which files to touch. That belongs in `goal`, `spec`, or
-the step plan.
-
-The highest priority items (the ones we will work on next), should be the
-smallest (e.g. no more than 20 minutes of focused work of a senior engineer)
-and have more details.
-
-Backlog must be comprehensible (no more than 15 items). To achieve this, 
-lower-priority items may be grouped into more coarse ones. Alternatively, the
-scope of the entire initiative may be reduced (with the approval of the user).
-
-The most important is the order of the first few items. The further we go down
-the list, the less important it is to precisely prioritize items against each
-other.
-
-### Backlog example
-
-````markdown
-# [Initiative Name] Backlog
-
-## Highest priority item
-
-## Next priority item
-
-[May have up to 3 sentences of description]
-
-## Another item
-
-## Low priority item which might need context
-
-[May have up to 3 sentences of description]
-
-...
-````
-
-**IMPORTANT**: if the item title is enough to recall what it is about, it
-SHOULD NOT have any description! In the example above, "Another item" is
-described well enough by its title, so it carries no description.
-
-Before you write the backlog out, reread every description you wrote and
-delete the ones the title already covers. Most of them.
+`status.md` is a log of these lines and nothing else. Do not add headings,
+prose, or a running narrative of the initiative.

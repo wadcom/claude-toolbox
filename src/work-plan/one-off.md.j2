@@ -54,28 +54,34 @@ adjusted and iterate on the plan.
 using TodoWrite tool. If the plan specifies a success criteria, make sure that
 is met before reporting completion.
 
-8. Present a summary of what was done to the user.
-{% include 'linear-walkthrough.md' %}
+8. Present a brief summary of what was done, then suggest a concise commit
+message for the change.
 
-9. Once you are done, create or update a file named `status.html` (located
+9. Once you are done, create or update a file named `status.md` (located
 in the same directory as `spec.html`), marking what you've done (see
 "Marking Completion" below).
 
-10. If there **were** changes to the original plan, **briefly** describe
-them in `status.html` as well. Be factual (what is the deviation from the
-plan) but provide a very short rationale ("couldn't use X from Y because of
-circular dependency"). If there was **NO** changes, do not document anything
-about deviations in the status.
+10. If there **were** changes to the original plan, describe them in
+`status.md` as ONE indented line per deviation. Be factual (what is the
+deviation from the plan) and give a very short rationale ("couldn't use X from
+Y because of circular dependency"). If there were **NO** changes, do not
+document anything about deviations in the status.
 
-11. Ask the user if they are satisfied with the result. If no, ask for the
-feedback and keep working until the user is satisfied.
+11. Ask the user explicitly whether they want a walkthrough of the change, or
+any adjustments to the work just done. Write a walkthrough only if the user
+asks for one (see "Walkthrough (On Request)" below). If the user asks for
+adjustments, keep working until the user is satisfied.
 
-**IMPORTANT**: Do NOT update `backlog.html`. This is a one-off change that
+**IMPORTANT**: Do NOT update `backlog.md`. This is a one-off change that
 bypasses the formal backlog process.
 
 ## Asking Questions
 
 {% include 'question-guidelines.md' %}
+
+## Walkthrough (On Request)
+
+{% include 'walkthrough-on-request.md' %}
 
 ## Marking Completion
 

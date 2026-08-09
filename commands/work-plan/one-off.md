@@ -10,25 +10,50 @@ that don't warrant a full planning cycle.
 
 ## Artifact Files
 
-Initiative artifacts (`goal`, `spec`, `backlog`, `status`, `step-XY`,
-`step-XY-walkthrough`) are stored as HTML files in the work-plan directory.
+Initiative artifacts live in the work-plan directory. Each artifact has one
+fixed format:
+
+| Artifact | Format |
+| --- | --- |
+| `backlog` | Markdown (`.md`) |
+| `goal` | HTML (`.html`) |
+| `spec` | HTML (`.html`) |
+| `status` | Markdown (`.md`) |
+| `step-XY`, `step-XY-plan` | HTML (`.html`) |
+| `step-XY-walkthrough` | HTML (`.html`) |
+
+`backlog` and `status` are terse working files, not documents. `goal`, `spec`,
+`step-XY-plan` and `step-XY-walkthrough` are the documents — put the narrative
+there.
+
+### Brevity of `backlog` and `status`
+
+A reader scans `backlog` and `status` in a few seconds. Every sentence you add
+costs that reader time, so write the fewest that still carry the fact.
+
+- Never explain WHY in these two files. The reason belongs in `goal` or
+  `spec`. A `status` line records what happened, not what motivated it.
+- Never restate context the reader already has from `goal` or `spec`.
+- Never add a section, a preamble, a summary, or a table of contents.
+- Never carry code, file path lists, or design detail into these two files.
+
+Reread every line you wrote into these two files before you save. Delete each
+one that a reader could have guessed from the title above it.
 
 ### Reading
 
 When asked to read an artifact named `NAME`, check the target directory for
-both `NAME.html` and `NAME.md`. Prefer `.html` if both exist; otherwise read
-whichever is present. References like `goal.md` from the user should be
-treated as the `goal` artifact regardless of extension — locate it the same
-way.
+both `NAME.html` and `NAME.md`. Prefer the format the table gives; otherwise
+read whichever file is present. A reference like `goal.md` from the user means
+the `goal` artifact regardless of extension — locate it the same way.
 
 ### Writing
 
-Always write artifacts as `.html`. When writing an artifact, if its `.md`
-sibling exists in the same directory (legacy from before the HTML
-migration), delete the `.md` file in the same step so only the HTML version
-remains.
+Always write an artifact in the format the table gives. If a sibling file with
+the other extension exists in the same directory (legacy from an earlier
+format), delete that sibling in the same step, so only one version remains.
 
-### Format
+### HTML format
 
 Use semantic markup:
 
@@ -42,6 +67,12 @@ Use semantic markup:
 
 Do not include `<html>`, `<head>`, or `<body>` wrappers — the artifacts are
 content fragments, not full pages.
+
+### Markdown format
+
+Use plain CommonMark: `#` for the document title, `##`/`###` for sections,
+`-` for lists, backticks for technical terms, and fenced blocks for code. Do
+not embed HTML in a Markdown artifact.
 
 ## Process Steps
 
@@ -85,7 +116,50 @@ adjusted and iterate on the plan.
 using TodoWrite tool. If the plan specifies a success criteria, make sure that
 is met before reporting completion.
 
-8. Present a summary of what was done to the user.
+8. Present a brief summary of what was done, then suggest a concise commit
+message for the change.
+
+9. Once you are done, create or update a file named `status.md` (located
+in the same directory as `spec.html`), marking what you've done (see
+"Marking Completion" below).
+
+10. If there **were** changes to the original plan, describe them in
+`status.md` as ONE indented line per deviation. Be factual (what is the
+deviation from the plan) and give a very short rationale ("couldn't use X from
+Y because of circular dependency"). If there were **NO** changes, do not
+document anything about deviations in the status.
+
+11. Ask the user explicitly whether they want a walkthrough of the change, or
+any adjustments to the work just done. Write a walkthrough only if the user
+asks for one (see "Walkthrough (On Request)" below). If the user asks for
+adjustments, keep working until the user is satisfied.
+
+**IMPORTANT**: Do NOT update `backlog.md`. This is a one-off change that
+bypasses the formal backlog process.
+
+## Asking Questions
+
+When asking questions, use the following guidelines:
+
+1. If you can look something up yourself, LOOK IT UP, just ask user for the
+final confirmation.
+
+2. Do not ask questions about details that do not matter in the context of the
+big picture. Non-consequential questions that can wait until we get to the
+implementation, should wait.
+
+3. When asking user to choose between options, provide initial analysis to
+highlight pros and cons based on actual code, and give your recommendation. The
+final decision should still be made by the user.
+
+## Walkthrough (On Request)
+
+Write a walkthrough of the changes only when the user asks for one. Never
+write it as part of the default flow.
+
+1. Write the walkthrough to `step-XY-walkthrough.html` in the work-plan
+directory, where XY is the step number of the plan artifact for this work (e.g.
+`step-03-walkthrough.html`).
 Use the **linear walkthrough** approach: present information as a guided
 narrative where each piece builds naturally on what came before. The reader
 should never encounter an unexplained concept — every idea is introduced before
@@ -179,41 +253,29 @@ focused, and pair it with a sentence saying what to look at. A diagram often
 replaces three paragraphs; prefer it when it does. Skip diagrams when prose is
 just as clear; do not include them in chat summaries.
 
-9. Once you are done, create or update a file named `status.html` (located
-in the same directory as `spec.html`), marking what you've done (see
-"Marking Completion" below).
+2. **Fresh-eyes review of the walkthrough.** The author always has too much
+context to judge their own writing, so a subagent with none is the only honest
+"cold reader" test. Run it once.
 
-10. If there **were** changes to the original plan, **briefly** describe
-them in `status.html` as well. Be factual (what is the deviation from the
-plan) but provide a very short rationale ("couldn't use X from Y because of
-circular dependency"). If there was **NO** changes, do not document anything
-about deviations in the status.
+Launch one subagent on the Sonnet model. Its ONLY input is the walkthrough file
+path — give it no diff, no plan, and no conversation context. Instruct it to
+read the file and report **only blockers**, as a flat list:
 
-11. Ask the user if they are satisfied with the result. If no, ask for the
-feedback and keep working until the user is satisfied.
+- a term, name, or phrase it cannot unpack from the file alone;
+- a reference to context the file does not contain.
 
-**IMPORTANT**: Do NOT update `backlog.html`. This is a one-off change that
-bypasses the formal backlog process.
+Tell it to report at most eight items, to skip style opinions and suggested
+rewrites, and to return an empty list when it finds none. Do not ask it to
+restate paragraphs.
 
-## Asking Questions
+Fix what it reports. Do not run a second pass.
 
-When asking questions, use the following guidelines:
-
-1. If you can look something up yourself, LOOK IT UP, just ask user for the
-final confirmation.
-
-2. Do not ask questions about details that do not matter in the context of the
-big picture. Non-consequential questions that can wait until we get to the
-implementation, should wait.
-
-3. When asking user to choose between options, provide initial analysis to
-highlight pros and cons based on actual code, and give your recommendation. The
-final decision should still be made by the user.
+3. Point the user to the walkthrough file path.
 
 ## Marking Completion
 
-When marking item as completed, append a new entry to `status.html` in the
-form `<p>COMPLETED step <X>: <SUMMARY></p>`.
+When marking item as completed, append a new line to `status.md` in the form
+`COMPLETED step <X>: <SUMMARY>`.
 
 `<X>` is the number of the completed step.
 
@@ -223,9 +285,12 @@ form `<p>COMPLETED step <X>: <SUMMARY></p>`.
  * be understandable without the context of the goal.
 
 Examples:
- * GOOD: `<p>COMPLETED step 7: Extract helpers from Subscription tests</p>`
- * BAD: `<p>COMPLETED step 7: Extract _create_new()</p>` — not understandable
+ * GOOD: `COMPLETED step 7: Extract helpers from Subscription tests`
+ * BAD: `COMPLETED step 7: Extract _create_new()` — not understandable
  without context.
 
 Rule of thumb: everything after "step ..." should be usable as a good commit
 title.
+
+`status.md` is a log of these lines and nothing else. Do not add headings,
+prose, or a running narrative of the initiative.

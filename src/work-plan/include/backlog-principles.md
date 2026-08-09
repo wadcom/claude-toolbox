@@ -16,7 +16,13 @@ element, an API response, a CLI output) over slicing by technical layer (e.g.
 slicing is not practical (e.g. pure infrastructure or foundational plumbing),
 note explicitly why, and define what "done" looks like for that item.
 
-Each backlog item can have a SHORT description (no more than 3 sentences).
+A backlog item is a title. The default is NO description at all. Add one only
+when the title alone would not recall what the item is about, and then keep it
+to 3 sentences at most.
+
+A description states WHAT to do. It never states why the item matters, how the
+code works today, or which files to touch. That belongs in `goal`, `spec`, or
+the step plan.
 
 The highest priority items (the ones we will work on next), should be the
 smallest (e.g. no more than 20 minutes of focused work of a senior engineer)
@@ -32,26 +38,28 @@ other.
 
 ### Backlog example
 
-````html
-<h1>[Initiative Name] Backlog</h1>
+````markdown
+# [Initiative Name] Backlog
 
-<h2>Highest priority item</h2>
+## Highest priority item
 
-<h2>Next priority item</h2>
+## Next priority item
 
-<p>[May have up to 3 sentences of description]</p>
+[May have up to 3 sentences of description]
 
-<h2>Another item</h2>
+## Another item
 
-<h2>Low priority item which might need context</h2>
+## Low priority item which might need context
 
-<p>[May have up to 3 sentences of description]</p>
+[May have up to 3 sentences of description]
 
 ...
 ````
 
-**IMPORTANT**: if the item title is enough to recall what it is about, it 
-SHOULD NOT have any description! In the example above, "Another item" is 
-supposedly described well enough by its title, so it doesn't have any
-description.
+**IMPORTANT**: if the item title is enough to recall what it is about, it
+SHOULD NOT have any description! In the example above, "Another item" is
+described well enough by its title, so it carries no description.
+
+Before you write the backlog out, reread every description you wrote and
+delete the ones the title already covers. Most of them.
 

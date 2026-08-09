@@ -25,7 +25,13 @@ element, an API response, a CLI output) over slicing by technical layer (e.g.
 slicing is not practical (e.g. pure infrastructure or foundational plumbing),
 note explicitly why, and define what "done" looks like for that item.
 
-Each backlog item can have a SHORT description (no more than 3 sentences).
+A backlog item is a title. The default is NO description at all. Add one only
+when the title alone would not recall what the item is about, and then keep it
+to 3 sentences at most.
+
+A description states WHAT to do. It never states why the item matters, how the
+code works today, or which files to touch. That belongs in `goal`, `spec`, or
+the step plan.
 
 The highest priority items (the ones we will work on next), should be the
 smallest (e.g. no more than 20 minutes of focused work of a senior engineer)
@@ -41,51 +47,78 @@ other.
 
 ### Backlog example
 
-````html
-<h1>[Initiative Name] Backlog</h1>
+````markdown
+# [Initiative Name] Backlog
 
-<h2>Highest priority item</h2>
+## Highest priority item
 
-<h2>Next priority item</h2>
+## Next priority item
 
-<p>[May have up to 3 sentences of description]</p>
+[May have up to 3 sentences of description]
 
-<h2>Another item</h2>
+## Another item
 
-<h2>Low priority item which might need context</h2>
+## Low priority item which might need context
 
-<p>[May have up to 3 sentences of description]</p>
+[May have up to 3 sentences of description]
 
 ...
 ````
 
-**IMPORTANT**: if the item title is enough to recall what it is about, it 
-SHOULD NOT have any description! In the example above, "Another item" is 
-supposedly described well enough by its title, so it doesn't have any
-description.
+**IMPORTANT**: if the item title is enough to recall what it is about, it
+SHOULD NOT have any description! In the example above, "Another item" is
+described well enough by its title, so it carries no description.
+
+Before you write the backlog out, reread every description you wrote and
+delete the ones the title already covers. Most of them.
 
 
 ## Artifact Files
 
-Initiative artifacts (`goal`, `spec`, `backlog`, `status`, `step-XY`,
-`step-XY-walkthrough`) are stored as HTML files in the work-plan directory.
+Initiative artifacts live in the work-plan directory. Each artifact has one
+fixed format:
+
+| Artifact | Format |
+| --- | --- |
+| `backlog` | Markdown (`.md`) |
+| `goal` | HTML (`.html`) |
+| `spec` | HTML (`.html`) |
+| `status` | Markdown (`.md`) |
+| `step-XY`, `step-XY-plan` | HTML (`.html`) |
+| `step-XY-walkthrough` | HTML (`.html`) |
+
+`backlog` and `status` are terse working files, not documents. `goal`, `spec`,
+`step-XY-plan` and `step-XY-walkthrough` are the documents — put the narrative
+there.
+
+### Brevity of `backlog` and `status`
+
+A reader scans `backlog` and `status` in a few seconds. Every sentence you add
+costs that reader time, so write the fewest that still carry the fact.
+
+- Never explain WHY in these two files. The reason belongs in `goal` or
+  `spec`. A `status` line records what happened, not what motivated it.
+- Never restate context the reader already has from `goal` or `spec`.
+- Never add a section, a preamble, a summary, or a table of contents.
+- Never carry code, file path lists, or design detail into these two files.
+
+Reread every line you wrote into these two files before you save. Delete each
+one that a reader could have guessed from the title above it.
 
 ### Reading
 
 When asked to read an artifact named `NAME`, check the target directory for
-both `NAME.html` and `NAME.md`. Prefer `.html` if both exist; otherwise read
-whichever is present. References like `goal.md` from the user should be
-treated as the `goal` artifact regardless of extension — locate it the same
-way.
+both `NAME.html` and `NAME.md`. Prefer the format the table gives; otherwise
+read whichever file is present. A reference like `goal.md` from the user means
+the `goal` artifact regardless of extension — locate it the same way.
 
 ### Writing
 
-Always write artifacts as `.html`. When writing an artifact, if its `.md`
-sibling exists in the same directory (legacy from before the HTML
-migration), delete the `.md` file in the same step so only the HTML version
-remains.
+Always write an artifact in the format the table gives. If a sibling file with
+the other extension exists in the same directory (legacy from an earlier
+format), delete that sibling in the same step, so only one version remains.
 
-### Format
+### HTML format
 
 Use semantic markup:
 
@@ -99,6 +132,12 @@ Use semantic markup:
 
 Do not include `<html>`, `<head>`, or `<body>` wrappers — the artifacts are
 content fragments, not full pages.
+
+### Markdown format
+
+Use plain CommonMark: `#` for the document title, `##`/`###` for sections,
+`-` for lists, backticks for technical terms, and fenced blocks for code. Do
+not embed HTML in a Markdown artifact.
 
 ## Process Steps
 
@@ -127,5 +166,5 @@ priority items are well understood and scoped (confirm this with the user).
 
 7. Make sure again that the backlog follows the described principles.
 
-8. Write out the backlog to file named `backlog.html` in the same directory
+8. Write out the backlog to file named `backlog.md` in the same directory
 where the goal file is located.
